@@ -28,9 +28,8 @@ export const registrationSteps = [
 ]
 
 export const recruiterRegistrationSteps = [
-  { id: "company", label: "Company Info", completed: false },
+  { id: "company", label: "Company Details", completed: false },
   { id: "address", label: "Company Address", completed: false },
-  { id: "recruiter", label: "Recruiter Info", completed: false },
 ]
 
 export const supportedFileFormats = ["PDF", "DOC"]

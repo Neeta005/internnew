@@ -4,9 +4,10 @@ import Image from "next/image"
 import { ProgressCircle } from "@/components/ui/progress-circle"
 import { StepIndicator } from "@/components/ui/step-indicator"
 import { Button } from "@/components/ui/button"
-import { registrationSteps } from "@/lib/data"
+import { registrationSteps, recruiterRegistrationSteps } from "@/lib/data"
 import Link from "next/link"
 import type { ReactNode } from "react"
+import { usePathname } from "next/navigation"
 
 interface RegistrationPageLayoutProps {
   title: string
@@ -29,38 +30,42 @@ export function RegistrationPageLayout({
   nextButtonText = "Next",
   onNextClick,
 }: RegistrationPageLayoutProps) {
-  const currentSteps = registrationSteps.map((step, index) => ({
+  const pathname = usePathname()
+
+  const isRecruiterFlow = pathname.includes("/recruiter/")
+  const stepsToUse = isRecruiterFlow ? recruiterRegistrationSteps : registrationSteps
+
+  const currentSteps = stepsToUse.map((step, index) => ({
     ...step,
     completed: index < currentStep,
   }))
 
-  const progressPercentage = ((currentStep + 1) / registrationSteps.length) * 100
+  const progressPercentage = ((currentStep + 1) / stepsToUse.length) * 100
 
   return (
     <div className="max-w-7xl mx-auto px-4 lg:px-8 py-12">
-   <div className="relative mb-10">
-  {/* Title aligned to the left */}
-  <h1 className="text-4xl font-semibold text-white">{title}</h1>
+      <div className="relative mb-10">
+        {/* Title aligned to the left */}
+        <h1 className="text-4xl font-semibold text-white">{title}</h1>
 
-  {/* Centered Next button */}
-  <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
-    {onNextClick ? (
-      <Button
-        onClick={onNextClick}
-        className="pointer-events-auto bg-gradient-to-r from-pink-500 to-orange-500 text-white font-semibold px-8 py-2 rounded-md shadow-md hover:opacity-90"
-      >
-        {nextButtonText}
-      </Button>
-    ) : (
-      <Link href={nextHref}>
-        <Button className="pointer-events-auto bg-gradient-to-r from-pink-500 to-orange-500 text-white font-semibold px-8 py-2 rounded-md shadow-md hover:opacity-90">
-          {nextButtonText}
-        </Button>
-      </Link>
-    )}
-  </div>
-</div>
-
+        {/* Centered Next button */}
+        <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
+          {onNextClick ? (
+            <Button
+              onClick={onNextClick}
+              className="pointer-events-auto bg-gradient-to-r from-pink-500 to-orange-500 text-white font-semibold px-8 py-2 rounded-md shadow-md hover:opacity-90"
+            >
+              {nextButtonText}
+            </Button>
+          ) : (
+            <Link href={nextHref}>
+              <Button className="pointer-events-auto bg-gradient-to-r from-pink-500 to-orange-500 text-white font-semibold px-8 py-2 rounded-md shadow-md hover:opacity-90">
+                {nextButtonText}
+              </Button>
+            </Link>
+          )}
+        </div>
+      </div>
 
       {/* Desktop Grid Layout */}
       <div className="hidden lg:grid grid-cols-[60px_500px_60px_1fr] gap-x-8 items-start">
