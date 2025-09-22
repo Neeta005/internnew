@@ -15,6 +15,8 @@ interface RegistrationPageLayoutProps {
   children: ReactNode
   onPrevious?: () => void
   onNext?: () => void
+  nextButtonText?: string
+  onNextClick?: () => void
 }
 
 export function RegistrationPageLayout({
@@ -24,6 +26,8 @@ export function RegistrationPageLayout({
   children,
   onPrevious,
   onNext,
+  nextButtonText = "Next",
+  onNextClick,
 }: RegistrationPageLayoutProps) {
   const currentSteps = registrationSteps.map((step, index) => ({
     ...step,
@@ -34,24 +38,34 @@ export function RegistrationPageLayout({
 
   return (
     <div className="max-w-7xl mx-auto px-4 lg:px-8 py-12">
-      <div className="flex items-center mb-10">
-        <h1 className="text-4xl font-semibold text-white flex-1 text-left">{title}</h1>
+   <div className="relative mb-10">
+  {/* Title aligned to the left */}
+  <h1 className="text-4xl font-semibold text-white">{title}</h1>
 
-        <div className="flex-1 flex justify-center">
-          <Link href={nextHref}>
-            <Button className="bg-gradient-to-r from-pink-500 to-orange-500 text-white font-semibold px-8 py-2 rounded-md shadow-md hover:opacity-90">
-              Next
-            </Button>
-          </Link>
-        </div>
+  {/* Centered Next button */}
+  <div className="absolute inset-0 flex justify-center items-center pointer-events-none">
+    {onNextClick ? (
+      <Button
+        onClick={onNextClick}
+        className="pointer-events-auto bg-gradient-to-r from-pink-500 to-orange-500 text-white font-semibold px-8 py-2 rounded-md shadow-md hover:opacity-90"
+      >
+        {nextButtonText}
+      </Button>
+    ) : (
+      <Link href={nextHref}>
+        <Button className="pointer-events-auto bg-gradient-to-r from-pink-500 to-orange-500 text-white font-semibold px-8 py-2 rounded-md shadow-md hover:opacity-90">
+          {nextButtonText}
+        </Button>
+      </Link>
+    )}
+  </div>
+</div>
 
-        <div className="flex-1"></div>
-      </div>
 
       {/* Desktop Grid Layout */}
-      <div className="hidden lg:grid grid-cols-[auto_500px_auto_1fr] gap-x-12 items-start">
+      <div className="hidden lg:grid grid-cols-[60px_500px_60px_1fr] gap-x-8 items-start">
         {/* Left Arrow */}
-        <div className="flex justify-center mt-50">
+        <div className="flex justify-start mt-50">
           <button className="p-2 hover:bg-red-500/10 transition-colors" aria-label="Previous" onClick={onPrevious}>
             <Image src="/images/arrowleft.png" alt="Left Arrow" width={50} height={50} priority />
           </button>
@@ -61,7 +75,7 @@ export function RegistrationPageLayout({
         <div className="rounded-xl p-6 w-full min-h-[500px]">{children}</div>
 
         {/* Right Arrow */}
-        <div className="flex justify-center mt-50">
+        <div className="flex justify-start mt-50">
           <button className="p-2 hover:bg-red-500/10 transition-colors" aria-label="Next" onClick={onNext}>
             <Image src="/images/arrowright.png" alt="Right Arrow" width={50} height={50} priority />
           </button>

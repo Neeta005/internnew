@@ -11,7 +11,11 @@ export default function BasicInfoPage() {
 
   return (
     <PageLayout navigationItems={candidateNavigationItems}>
-      <RegistrationPageLayout title="Register" nextHref="/candidate/register/educational-details" currentStep={3}>
+      <RegistrationPageLayout
+        title="Basic Information"
+        nextHref="/candidate/register/educational-details"
+        currentStep={3}
+      >
         <CandidateBasicInfoContent />
       </RegistrationPageLayout>
     </PageLayout>

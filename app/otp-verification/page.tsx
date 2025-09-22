@@ -22,21 +22,25 @@ export default function OTPVerificationPage() {
   }
 
   const handleVerify = async () => {
-    if (otp.length !== 4) return
+    console.log("Verifying OTP:", otp)
+    if (otp.length !== 6) {
+      console.log("OTP length invalid")
+      return
+    }
 
     setIsVerifying(true)
 
-    // Simulate API call
-    setTimeout(() => {
+    // Simulate API call and redirect after 1s
+    setTimeout(async () => {
       setIsVerifying(false)
-
-      router.push(redirect)
+      console.log("Redirecting to:", redirect)
+      await router.push(redirect)
     }, 1000)
   }
 
   const handleResendCode = () => {
     console.log("Resending OTP to:", email)
-    // Implement resend logic
+    // Implement resend logic here
   }
 
   const handleChangeEmail = () => {
@@ -72,7 +76,7 @@ export default function OTPVerificationPage() {
 
         <Button
           onClick={handleVerify}
-          disabled={otp.length !== 4 || isVerifying}
+          disabled={otp.length !== 6 || isVerifying}
           className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-medium py-2 px-4 rounded-lg disabled:opacity-50"
         >
           {isVerifying ? "Verifying..." : "Verify"}

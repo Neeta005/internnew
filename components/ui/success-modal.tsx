@@ -23,7 +23,7 @@ export function SuccessModal({ isOpen, onClose, onGoToDashboard }: SuccessModalP
         <h2 className="text-2xl font-bold text-white mb-4">Successfully Registered</h2>
         <p className="text-gray-400 mb-8">Your Registration is successfully completed</p>
 
-        <Button onClick={onGoToDashboard} className="bg-red-500 hover:bg-red-600 px-8 py-3 rounded-lg w-full">
+        <Button onClick={onGoToDashboard} className="bg-gradient-to-r from-pink-500 to-orange-500 hover:bg-red-600 px-8 py-3 rounded-lg w-full">
           Go to Dashboard
         </Button>
       </div>

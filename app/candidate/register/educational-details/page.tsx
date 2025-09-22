@@ -88,7 +88,13 @@ export default function EducationalDetailsPage() {
   return (
     <>
       <PageLayout navigationItems={candidateNavigationItems}>
-        <RegistrationPageLayout title="Register" nextHref="/candidate/dashboard" currentStep={4}>
+        <RegistrationPageLayout
+          title="Educational Details"
+          nextHref="/candidate/register/educational-details"
+          currentStep={4}
+          nextButtonText="Finish & Register"
+          onNextClick={handleFinishRegistration}
+        >
           {/* Existing Education Cards */}
           {educations.map((education) => (
             <div key={education.id} className="bg-slate-800 rounded-lg p-6 border border-slate-700">
@@ -237,7 +243,7 @@ export default function EducationalDetailsPage() {
               </div>
             </div>
 
-            <div className="flex justify-center">
+            <div className="flex justify-end">
               <Button onClick={handleAddEducation} className="bg-orange-500 hover:bg-orange-600 px-8 py-2 rounded-lg">
                 Add Education
               </Button>

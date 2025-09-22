@@ -22,33 +22,25 @@ export function CandidateRegisterContent() {
   return (
     <div className="max-w-7xl mx-auto px-4 lg:px-8 py-12">
       {/* Header */}
-     <div className="flex items-center mb-10">
-  <h1 className="text-4xl font-semibold text-white flex-1 text-left">Register</h1>
-  
-  <div className="flex-1 flex justify-center">
-    <Link href="/candidate/register/phone-verification">
-      <Button className="bg-gradient-to-r from-pink-500 to-orange-500 text-white font-semibold px-8 py-2 rounded-md shadow-md hover:opacity-90">
-        Next
-      </Button>
-    </Link>
-  </div>
-  
-  {/* Empty div to take space on right and keep button centered */}
-  <div className="flex-1"></div>
+      <div className="flex items-center justify-between mb-10">
+        <h1 className="text-4xl font-semibold text-white">Register</h1>
+
+      <div className="w-full flex justify-center mt-6">
+  <Link href="/candidate/register/phone-verification">
+    <Button className="bg-gradient-to-r from-pink-500 to-orange-500 text-white font-semibold px-8 py-2 rounded-md shadow-md hover:opacity-90">
+      Next
+    </Button>
+  </Link>
 </div>
 
+      </div>
+
       {/* Desktop Grid Layout */}
-      <div className="hidden lg:grid grid-cols-[auto_500px_auto_1fr] gap-x-12 items-start">
+      <div className="hidden lg:grid grid-cols-[60px_500px_60px_1fr] gap-x-8 items-start">
         {/* Left Arrow */}
-        <div className="flex justify-center mt-50">
+        <div className="flex justify-start mt-50">
           <button className="p-2 hover:bg-red-500/10 transition-colors" aria-label="Previous">
-            <Image
-              src="/images/arrowleft.png"
-              alt="Left Arrow"
-              width={50}
-              height={50}
-              priority
-            />
+            <Image src="/images/arrowleft.png" alt="Left Arrow" width={50} height={50} priority />
           </button>
         </div>
 
@@ -71,15 +63,9 @@ export function CandidateRegisterContent() {
         </div>
 
         {/* Right Arrow */}
-        <div className="flex justify-center mt-50">
+        <div className="flex justify-start mt-50">
           <button className="p-2 hover:bg-red-500/10 transition-colors" aria-label="Next">
-            <Image
-              src="/images/arrowright.png"
-              alt="Right Arrow"
-              width={50}
-              height={50}
-              priority
-            />
+            <Image src="/images/arrowright.png" alt="Right Arrow" width={50} height={50} priority />
           </button>
         </div>
 
@@ -89,11 +75,7 @@ export function CandidateRegisterContent() {
             <ProgressCircle percentage={20} />
           </div>
 
-          <StepIndicator
-            steps={currentSteps}
-            currentStep={0}
-            className="space-y-4 text-white"
-          />
+          <StepIndicator steps={currentSteps} currentStep={0} className="space-y-4 text-white" />
         </div>
       </div>
 
@@ -109,11 +91,7 @@ export function CandidateRegisterContent() {
             <ProgressCircle percentage={20} />
           </div>
 
-          <StepIndicator
-            steps={currentSteps}
-            currentStep={0}
-            className="space-y-4 text-white"
-          />
+          <StepIndicator steps={currentSteps} currentStep={0} className="space-y-4 text-white" />
         </div>
       </div>
     </div>
