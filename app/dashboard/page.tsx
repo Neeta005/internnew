@@ -1,5 +1,7 @@
+"use client"
+
 import { DashboardLayout } from "@/components/dashboard/dashboard-layout"
 
-export default function RecruiterDashboardPage() {
+export default function DashboardPage() {
   return <DashboardLayout />
 }
