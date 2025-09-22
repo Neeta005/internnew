@@ -1,12 +1,13 @@
 "use client"
 
+import { Suspense } from "react"
 import { useState } from "react"
 import { useRouter, useSearchParams } from "next/navigation"
 import { AuthLayout } from "@/components/auth/auth-layout"
 import { OTPInput } from "@/components/ui/otp-input"
 import { Button } from "@/components/ui/button"
 
-export default function OTPVerificationPage() {
+function OTPVerificationContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const email = searchParams.get("email") || "company@example.com"
@@ -90,5 +91,32 @@ export default function OTPVerificationPage() {
         </p>
       </div>
     </AuthLayout>
+  )
+}
+
+function OTPVerificationLoading() {
+  return (
+    <AuthLayout
+      studentImage="/images/student-desk.png"
+      backgroundImage="/images/background-pattern.png"
+      logoText="WORLD OF INTERNS"
+    >
+      <div className="w-full max-w-md">
+        <h1 className="text-2xl font-bold text-white mb-6">OTP Verification</h1>
+        <div className="animate-pulse">
+          <div className="h-4 bg-gray-600 rounded mb-4"></div>
+          <div className="h-12 bg-gray-600 rounded mb-6"></div>
+          <div className="h-10 bg-gray-600 rounded"></div>
+        </div>
+      </div>
+    </AuthLayout>
+  )
+}
+
+export default function OTPVerificationPage() {
+  return (
+    <Suspense fallback={<OTPVerificationLoading />}>
+      <OTPVerificationContent />
+    </Suspense>
   )
 }

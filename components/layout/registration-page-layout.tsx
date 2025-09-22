@@ -68,7 +68,7 @@ export function RegistrationPageLayout({
       </div>
 
       {/* Desktop Grid Layout */}
-      <div className="hidden lg:grid grid-cols-[60px_500px_60px_1fr] gap-x-8 items-start">
+      <div className="hidden lg:grid grid-cols-[50px_1fr_50px_280px] gap-x-8 items-start">
         {/* Left Arrow */}
         <div className="flex justify-start mt-50">
           <button className="p-2 hover:bg-red-500/10 transition-colors" aria-label="Previous" onClick={onPrevious}>
@@ -76,8 +76,7 @@ export function RegistrationPageLayout({
           </button>
         </div>
 
-        {/* Main Content Card */}
-        <div className="rounded-xl p-6 w-full min-h-[500px]">{children}</div>
+        <div className="rounded-xl p-10 w-full min-h-[500px] max-w-5xl">{children}</div>
 
         {/* Right Arrow */}
         <div className="flex justify-start mt-50">
@@ -86,8 +85,7 @@ export function RegistrationPageLayout({
           </button>
         </div>
 
-        {/* Progress Section */}
-        <div className="bg-white/10 border border-white rounded-2xl p-4 w-full max-w-xs mx-auto min-h-[400px] flex flex-col justify-center items-center">
+        <div className="bg-white/10 border border-white rounded-2xl p-4 w-full min-h-[400px] flex flex-col justify-center items-center">
           <div className="flex justify-center mb-6">
             <ProgressCircle percentage={progressPercentage} />
           </div>
@@ -98,7 +96,7 @@ export function RegistrationPageLayout({
 
       {/* Mobile Layout */}
       <div className="lg:hidden space-y-10">
-        <div className="bg-slate-800 border-2 border-dashed border-red-500 rounded-xl p-8 min-h-[450px] w-full max-w-md mx-auto">
+        <div className="bg-slate-800 border-2 border-dashed border-red-500 rounded-xl p-8 min-h-[450px] w-full max-w-2xl mx-auto">
           {children}
         </div>
 
