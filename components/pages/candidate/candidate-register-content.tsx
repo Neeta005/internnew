@@ -1,0 +1,121 @@
+"use client"
+
+import Image from "next/image"
+import { ProgressCircle } from "@/components/ui/progress-circle"
+import { StepIndicator } from "@/components/ui/step-indicator"
+import { FileUpload } from "@/components/ui/file-upload"
+import { Button } from "@/components/ui/button"
+import { registrationSteps } from "@/lib/data"
+import Link from "next/link"
+
+export function CandidateRegisterContent() {
+  const currentSteps = registrationSteps.map((step, index) => ({
+    ...step,
+    completed: index === 0,
+  }))
+
+  const handleResumeUpload = (file: File) => {
+    console.log("Uploaded resume file:", file)
+    // TODO: Add API call to upload the resume or set it to state
+  }
+
+  return (
+    <div className="max-w-7xl mx-auto px-4 lg:px-8 py-12">
+      {/* Header */}
+     <div className="flex items-center mb-10">
+  <h1 className="text-4xl font-semibold text-white flex-1 text-left">Register</h1>
+  
+  <div className="flex-1 flex justify-center">
+    <Link href="/candidate/register/phone-verification">
+      <Button className="bg-gradient-to-r from-pink-500 to-orange-500 text-white font-semibold px-8 py-2 rounded-md shadow-md hover:opacity-90">
+        Next
+      </Button>
+    </Link>
+  </div>
+  
+  {/* Empty div to take space on right and keep button centered */}
+  <div className="flex-1"></div>
+</div>
+
+      {/* Desktop Grid Layout */}
+      <div className="hidden lg:grid grid-cols-[auto_500px_auto_1fr] gap-x-12 items-start">
+        {/* Left Arrow */}
+        <div className="flex justify-center mt-50">
+          <button className="p-2 hover:bg-red-500/10 transition-colors" aria-label="Previous">
+            <Image
+              src="/images/arrowleft.png"
+              alt="Left Arrow"
+              width={50}
+              height={50}
+              priority
+            />
+          </button>
+        </div>
+
+        {/* Resume Upload Card */}
+        <div className="rounded-xl p-6 w-full min-h-[500px]">
+          <h2 className="text-xl font-semibold text-white mb-4">Upload Your Resume</h2>
+          <FileUpload onFileSelect={handleResumeUpload} />
+
+          {/* Optional Error Message Example */}
+          <div className="mt-4 text-red-500 text-sm space-y-1">
+            <p className="flex items-center gap-2">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+              Upload failed, please try again
+            </p>
+            <p className="underline">HannahBusing_Resume.pdf</p>
+            <button className="text-xs underline hover:text-red-400">Try again</button>
+          </div>
+        </div>
+
+        {/* Right Arrow */}
+        <div className="flex justify-center mt-50">
+          <button className="p-2 hover:bg-red-500/10 transition-colors" aria-label="Next">
+            <Image
+              src="/images/arrowright.png"
+              alt="Right Arrow"
+              width={50}
+              height={50}
+              priority
+            />
+          </button>
+        </div>
+
+        {/* Progress Section */}
+        <div className="bg-white/10 border border-white rounded-2xl p-4 w-full max-w-xs mx-auto min-h-[400px] flex flex-col justify-center items-center">
+          <div className="flex justify-center mb-6">
+            <ProgressCircle percentage={20} />
+          </div>
+
+          <StepIndicator
+            steps={currentSteps}
+            currentStep={0}
+            className="space-y-4 text-white"
+          />
+        </div>
+      </div>
+
+      {/* Mobile Layout */}
+      <div className="lg:hidden space-y-10">
+        <div className="bg-slate-800 border-2 border-dashed border-red-500 rounded-xl p-8 min-h-[450px] w-full max-w-md mx-auto">
+          <h2 className="text-xl font-semibold text-white mb-4">Upload Your Resume</h2>
+          <FileUpload onFileSelect={handleResumeUpload} />
+        </div>
+
+        <div className="backdrop-blur-md rounded-2xl p-2">
+          <div className="flex justify-center mb-6">
+            <ProgressCircle percentage={20} />
+          </div>
+
+          <StepIndicator
+            steps={currentSteps}
+            currentStep={0}
+            className="space-y-4 text-white"
+          />
+        </div>
+      </div>
+    </div>
+  )
+}
