@@ -55,13 +55,14 @@ export default function OTPVerificationPage() {
             <button className="text-red-400 hover:text-red-300">Resend Code in {formatTime(resendTimeLeft)}</button>
           </div>
 
-          <Button
-            onClick={handleVerifyOTP}
-            className="w-full bg-red-500 hover:bg-red-600 py-3 rounded-lg font-medium"
-            disabled={otp.length !== 6}
-          >
-            Verify OTP
-          </Button>
+         <Button
+  onClick={handleVerifyOTP}
+  className="w-fit px-6 bg-gradient-to-r from-pink-500 to-orange-500 hover:bg-red-600 py-3 rounded-lg font-medium"
+  disabled={otp.length !== 6}
+>
+  Verify OTP
+</Button>
+
         </div>
       </RegistrationPageLayout>
     </PageLayout>

@@ -30,9 +30,13 @@ export default function PhoneVerificationPage() {
 
           <div className="text-sm text-green-400">Message has been successfully sent to your Given number.</div>
 
-          <Button onClick={handleRequestOTP} className="w-full bg-gradient-to-r from-pink-500 to-orange-500 hover:bg-red-600 py-3 rounded-lg font-medium">
-            Request OTP
-          </Button>
+         <Button
+  onClick={handleRequestOTP}
+  className="w-40 bg-gradient-to-r from-pink-500 to-orange-500 hover:bg-red-600 py-3 rounded-lg font-medium"
+>
+  Request OTP
+</Button>
+
         </div>
       </RegistrationPageLayout>
     </PageLayout>

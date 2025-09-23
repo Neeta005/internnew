@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
@@ -55,10 +54,6 @@ export function RecruiterLogin({ onSubmit, onSocialLogin }: RecruiterLoginProps)
       router.push("/candidate/register")
     } else if (provider === "linkedin" && userType === "recruiter") {
       router.push("/recruiter/register")
-    } else if (provider === "google" && userType === "candidate") {
-      router.push("/candidate/register")
-    } else if (provider === "google" && userType === "recruiter") {
-      router.push("/recruiter/register")
     }
 
     onSocialLogin?.(provider)
@@ -66,15 +61,20 @@ export function RecruiterLogin({ onSubmit, onSocialLogin }: RecruiterLoginProps)
 
   return (
     <div className="w-full max-w-md">
-      <h1 className="text-2xl font-bold text-white mb-6">Welcome Back</h1>
-
-      <AuthToggle onToggle={setUserType} defaultType="recruiter" />
-
-      <div className="space-y-3 mb-6">
-        <SocialLogin provider="linkedin" onLogin={handleSocialLogin} />
-        <SocialLogin provider="google" onLogin={handleSocialLogin} />
+      {/* Title and Toggle in a row */}
+      <div className="flex items-center justify-between mb-6">
+        <h1 className="text-2xl font-bold text-white">Sign up</h1>
+        <div className="w-1/2">
+          <AuthToggle onToggle={setUserType} defaultType="recruiter" />
+        </div>
       </div>
 
+      {/* Social login - only LinkedIn */}
+      <div className="space-y-3 mb-2">
+        <SocialLogin provider="linkedin" onLogin={handleSocialLogin} />
+      </div>
+
+      {/* Divider */}
       <div className="relative mb-6">
         <div className="absolute inset-0 flex items-center">
           <div className="w-full border-t border-gray-600"></div>
@@ -84,6 +84,7 @@ export function RecruiterLogin({ onSubmit, onSocialLogin }: RecruiterLoginProps)
         </div>
       </div>
 
+      {/* Email form */}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <Label htmlFor="email" className="text-gray-300 text-sm">

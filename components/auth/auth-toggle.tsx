@@ -17,28 +17,28 @@ export function AuthToggle({ onToggle, defaultType = "candidate" }: AuthTogglePr
   }
 
   return (
-    <div className="flex bg-slate-700 rounded-lg p-1 mb-6">
+    <div className="flex bg-slate-700 rounded-full p-[2px] items-center">
       <Button
         variant={activeType === "candidate" ? "default" : "ghost"}
-        className={`flex-1 text-sm font-medium ${
+        className={`flex-1 text-xs font-medium rounded-full px-3 py-1 ${
           activeType === "candidate"
             ? "bg-blue-600 text-white hover:bg-blue-700"
             : "text-gray-300 hover:text-white hover:bg-slate-600"
         }`}
         onClick={() => handleToggle("candidate")}
       >
-        As Candidate
+        Candidate
       </Button>
       <Button
         variant={activeType === "recruiter" ? "default" : "ghost"}
-        className={`flex-1 text-sm font-medium ${
+        className={`flex-1 text-xs font-medium rounded-full px-3 py-1 ${
           activeType === "recruiter"
             ? "bg-blue-600 text-white hover:bg-blue-700"
             : "text-gray-300 hover:text-white hover:bg-slate-600"
         }`}
         onClick={() => handleToggle("recruiter")}
       >
-        As Recruiter
+        Recruiter
       </Button>
     </div>
   )
