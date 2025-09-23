@@ -7,6 +7,7 @@ import { ActivityFeed } from "./activity-feed"
 import { MeetingsSection } from "./meetings-section"
 import { Button } from "@/components/ui/button"
 import { Plus } from "lucide-react"
+import Link from "next/link"
 
 export function DashboardContent() {
   return (
@@ -14,10 +15,12 @@ export function DashboardContent() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold text-white">Welcome, Arun</h1>
-        <Button className=" bg-gradient-to-r from-pink-500 to-orange-500 hover:bg-red-700 text-white">
-          <Plus className="h-4 w-4 mr-2" />
-          Post Job
-        </Button>
+        <Link href="/recruiter/post-job">
+          <Button className=" bg-gradient-to-r from-pink-500 to-orange-500 hover:bg-red-700 text-white">
+            <Plus className="h-4 w-4 mr-2" />
+            Post Job
+          </Button>
+        </Link>
       </div>
 
       {/* Stats Cards */}
